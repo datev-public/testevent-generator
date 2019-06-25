@@ -3,6 +3,7 @@ package com.giraone.testdata.fields;
 import com.giraone.testdata.Person;
 import com.giraone.testdata.generator.Generator;
 import com.giraone.testdata.generator.GeneratorConfiguration;
+import com.giraone.testdata.generator.PersonGenerator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +24,6 @@ public class FieldEnhancerIban implements FieldEnhancer {
 
     protected String randomIban(GeneratorConfiguration configuration) {
 
-        return Generator.randomFromFile("iban-" + configuration.language + ".txt");
+        return PersonGenerator.randomFromFile("iban-" + configuration.language + ".txt");
     }
 }

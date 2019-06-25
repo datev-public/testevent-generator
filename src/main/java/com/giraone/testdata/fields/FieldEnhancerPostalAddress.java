@@ -3,6 +3,7 @@ package com.giraone.testdata.fields;
 import com.giraone.testdata.Person;
 import com.giraone.testdata.generator.Generator;
 import com.giraone.testdata.generator.GeneratorConfiguration;
+import com.giraone.testdata.generator.PersonGenerator;
 
 /**
  * This class adds a "postal address" (street, postalCode, city) to the person.
@@ -26,16 +27,16 @@ public class FieldEnhancerPostalAddress implements FieldEnhancer {
      */
     protected String[] randomCityAndPostCode(GeneratorConfiguration configuration) {
 
-        return Generator.randomFromFile("city+postcode-" + configuration.country + ".txt").split(",");
+        return PersonGenerator.randomFromFile("city+postcode-" + configuration.country + ".txt").split(",");
     }
 
     protected String randomStreet(GeneratorConfiguration configuration) {
 
-        return Generator.randomFromFile("street-" + configuration.language + ".txt");
+        return PersonGenerator.randomFromFile("street-" + configuration.language + ".txt");
     }
 
     protected String randomHouseNumber(GeneratorConfiguration configuration) {
 
-        return Generator.randomFromWeightedFile("house-number-" + configuration.language + ".txt");
+        return PersonGenerator.randomFromWeightedFile("house-number-" + configuration.language + ".txt");
     }
 }

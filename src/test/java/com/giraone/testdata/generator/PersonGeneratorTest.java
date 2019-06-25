@@ -4,21 +4,21 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class GeneratorTest {
+public class PersonGeneratorTest {
 
-    private static Generator generator_de;
-    private static Generator generator_en;
+    private static PersonGenerator generator_de;
+    private static PersonGenerator generator_en;
 
     @BeforeClass
     public static void init()
     {
         GeneratorConfiguration de = new GeneratorConfiguration();
         de.language = EnumLanguage.de;
-        generator_de = new Generator(de);
+        generator_de = new PersonGenerator(de);
 
         GeneratorConfiguration en = new GeneratorConfiguration();
         en.language = EnumLanguage.en;
-        generator_en = new Generator(en);
+        generator_en = new PersonGenerator(en);
     }
 
     //- counting entries test ------------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ public class GeneratorTest {
         checkOftenUsedEnglish(generator_de, EnumGender.female, "Maria");
     }
 
-    private void checkOftenUsedEnglish(Generator generator, EnumGender gender, String check) {
+    private void checkOftenUsedEnglish(PersonGenerator generator, EnumGender gender, String check) {
         int entries = generator.getNumberOfEntriesGivenName(gender);
         int count = 0;
         for (int i = 0; i < entries; i++)

@@ -3,6 +3,7 @@ package com.giraone.testdata.fields;
 import com.giraone.testdata.Person;
 import com.giraone.testdata.generator.Generator;
 import com.giraone.testdata.generator.GeneratorConfiguration;
+import com.giraone.testdata.generator.PersonGenerator;
 import com.giraone.testdata.util.NameNormalizeService;
 
 import java.util.Random;
@@ -33,6 +34,6 @@ public class FieldEnhancerEmail implements FieldEnhancer {
 
     protected String randomMailDomain(GeneratorConfiguration configuration) {
 
-        return Generator.randomFromWeightedFile("mail-domain-weighted-" + configuration.language + ".txt");
+        return PersonGenerator.randomFromWeightedFile("mail-domain-weighted-" + configuration.language + ".txt");
     }
 }

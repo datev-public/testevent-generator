@@ -40,7 +40,7 @@ public class GeneratorCommandTest {
 
     @Test
     public void generatePersonDe() {
-        Person person = generator_de.randomPerson();
+        Person person = generator_de.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getGender());
         Assert.assertNotNull(person.getGivenName());
@@ -67,7 +67,7 @@ public class GeneratorCommandTest {
 
     @Test
     public void testThatUuidIsGenerated() {
-        Person person = generator_en.randomPerson();
+        Person person = generator_en.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getId());
         // Sth. like 26297343-cc92-4363-ad45-ee52d091c286
@@ -80,7 +80,7 @@ public class GeneratorCommandTest {
     @Test
     public void testThatDateOfBirthIsGenerated() {
         generator_en.getConfiguration().additionalFields.put("dateOfBirth", new FieldEnhancerDateOfBirth());
-        Person person = generator_en.randomPerson();
+        Person person = generator_en.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getAdditionalFields());
         Assert.assertNotNull(person.getAdditionalField("dateOfBirth"));
@@ -93,7 +93,7 @@ public class GeneratorCommandTest {
     @Test
     public void testThatGermanPostalAddressIsGenerated() {
         generator_de.getConfiguration().additionalFields.put("postalAddress", new FieldEnhancerPostalAddress());
-        Person person = generator_de.randomPerson();
+        Person person = generator_de.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getAdditionalFields());
         Assert.assertNotNull(person.getAdditionalField("city"));
@@ -102,7 +102,7 @@ public class GeneratorCommandTest {
     @Test
     public void testThatEmailIsGenerated() {
         generator_de.getConfiguration().additionalFields.put("email", new FieldEnhancerEmail());
-        Person person = generator_de.randomPerson();
+        Person person = generator_de.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getAdditionalFields());
         Assert.assertNotNull(person.getAdditionalField("email"));
@@ -113,7 +113,7 @@ public class GeneratorCommandTest {
     @Test
     public void testThatGermanIbanIsGenerated() {
         generator_de.getConfiguration().additionalFields.put("iban", new FieldEnhancerIban());
-        Person person = generator_de.randomPerson();
+        Person person = generator_de.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getAdditionalFields());
         Assert.assertNotNull(person.getAdditionalField("iban"));
@@ -124,7 +124,7 @@ public class GeneratorCommandTest {
     @Test
     public void testThatBritishIbanIsGenerated() {
         generator_en.getConfiguration().additionalFields.put("iban", new FieldEnhancerIban());
-        Person person = generator_en.randomPerson();
+        Person person = generator_en.personManager.createAndAddPerson();
         Assert.assertNotNull(person);
         Assert.assertNotNull(person.getAdditionalFields());
         Assert.assertNotNull(person.getAdditionalField("iban"));
