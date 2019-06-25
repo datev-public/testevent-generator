@@ -8,5 +8,5 @@ import java.io.PrintStream;
 import java.util.List;
 
 public interface ListWriter {
-    void write(List<AbstractEmployeeCommand> personList, PrintStream out) throws IOException;
+    void write(List<Object> objectList, PrintStream out) throws IOException;
 }

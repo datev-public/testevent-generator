@@ -1,7 +1,6 @@
 package com.giraone.testdata;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.giraone.testdata.generator.EnumGender;
 
 import java.util.HashMap;

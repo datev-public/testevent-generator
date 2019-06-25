@@ -10,6 +10,7 @@ import org.apache.commons.cli.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class GeneratorMain {
 
         Options options = new Options();
         options.addOption("h", "help", false, "print usage help");
+        options.addOption("w", "createFullEvents", false, "create full events instead of commands (partial changes)");
         options.addOption("n", "numberOfItems", true, "the number of items, that should be produced in total or in a file");
         options.addOption("f", "filesPerDirectory", true, "the number of files per directory");
         options.addOption("d", "numberOfDirectories", true, "the number of directories for splitting the output");
@@ -39,6 +41,7 @@ public class GeneratorMain {
                 usage(options);
                 System.exit(1);
             }
+            configuration.createFullEvents = cmd.hasOption("createFullEvents");
             configuration.language = EnumLanguage.valueOf(cmd.getOptionValue("language", configuration.language.toString()));
             configuration.country = cmd.getOptionValue("country", configuration.country.toString());
             configuration.withIndex = cmd.hasOption("withIndex");
@@ -69,8 +72,14 @@ public class GeneratorMain {
 
     private void runOneList(Generator generator, PrintStream out) throws Exception {
 
-        List<AbstractEmployeeCommand> commandList = generator.randomCommands(0, configuration.numberOfItems);
-        configuration.listWriter.write(commandList, out);
+        if (configuration.createFullEvents) {
+            List<AbstractEmployeeEvent> eventList = generator.randomFullEvents(0, configuration.numberOfItems);
+            configuration.listWriter.write(Collections.singletonList(eventList), out);
+        } else {
+            List<AbstractEmployeeCommand> commandList = generator.randomCommands(0, configuration.numberOfItems);
+            configuration.listWriter.write(Collections.singletonList(commandList), out);
+        }
+
     }
 
     private void runBlockwise(Generator generator) throws Exception {

@@ -13,11 +13,11 @@ import java.util.List;
 public class ListWriterJson implements ListWriter {
 
     @Override
-    public void write(List<AbstractEmployeeCommand> personList, PrintStream out) throws IOException {
+    public void write(List<Object> objectList, PrintStream out) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.writeValue(out, personList);
+        mapper.writeValue(out, objectList);
     }
 }

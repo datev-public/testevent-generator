@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class GeneratorConfiguration {
 
+    public boolean createFullEvents = false;
+
     /** the language for which the test data is generated (either "en" or "de") */
     public EnumLanguage language = EnumLanguage.de;
 

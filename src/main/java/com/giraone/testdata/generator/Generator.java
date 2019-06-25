@@ -69,20 +69,49 @@ public class Generator {
 
     public List<AbstractEmployeeCommand> randomCommands(int startIndex, int endIndex) {
 
+        String[] lookup = new String[endIndex - startIndex];
+        int totalCounter = 0;
+
         final ArrayList<AbstractEmployeeCommand> ret = new ArrayList<>();
         for (int index = startIndex; index < endIndex; index++) {
 
             int r = RANDOM.nextInt(100);
-            if (r < 20) {
+            if ((index - startIndex) < 2 || r < 20) {
                 final Person person = randomPerson();
                 EmployeeJoinCompanyPayload payload = new EmployeeJoinCompanyPayload(person);
                 EmployeeJoinCompanyCommand command = new EmployeeJoinCompanyCommand(payload);
                 ret.add(command);
+                lookup[totalCounter++] = person.getId();
             } else {
                 final Person person = randomPerson();
+                final String id = lookup[RANDOM.nextInt(totalCounter)];
+                person.setId(id);
                 EmployeeAddressChangePayload payload = new EmployeeAddressChangePayload(person);
                 EmployeeAddressChangeCommand command = new EmployeeAddressChangeCommand(payload);
                 ret.add(command);
+            }
+        }
+        return ret;
+    }
+
+    public List<AbstractEmployeeEvent> randomFullEvents(int startIndex, int endIndex) {
+
+        int totalCounter = 0;
+        final ArrayList<AbstractEmployeeEvent> ret = new ArrayList<>();
+        for (int index = startIndex; index < endIndex; index++) {
+
+            int r = RANDOM.nextInt(100);
+            if ((index - startIndex) < 2 || r < 20) {
+                final Person person = randomPerson();
+                EmployeeJoinedCompanyEvent event = new EmployeeJoinedCompanyEvent(person);
+                totalCounter++;
+                ret.add(event);
+            } else {
+                final Person person = randomPerson();
+                final AbstractEmployeeEvent event = ret.get(RANDOM.nextInt(totalCounter));
+                person.setId(event.getPayload().getId());
+                EmployeeAddressChangeEvent payload = new EmployeeAddressChangeEvent(person);
+                ret.add(payload);
             }
         }
         return ret;
