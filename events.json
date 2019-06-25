@@ -1,0 +1,30 @@
+[ {
+  "payload" : {
+    "id" : "01b7bb39-4050-45ce-bcce-994d73799065",
+    "givenName" : "Klaus",
+    "surname" : "Baier",
+    "gender" : "m",
+    "dateOfBirth" : "19710322",
+    "city" : "Rackith",
+    "streetAddress" : "Am Langen Rain 31",
+    "postalCode" : "06901"
+  },
+  "type" : "EmployeeJoinCompanyCommand"
+}, {
+  "payload" : {
+    "id" : "01b7bb39-4050-45ce-bcce-994d73799065",
+    "city" : "Mötzingen",
+    "streetAddress" : "Drei Häuserweg 6a",
+    "postalCode" : "71159"
+  },
+  "type" : "EmployeeAddressChangeCommand"
+}, {
+  "payload" : {
+    "id" : "01b7bb39-4050-45ce-bcce-994d73799065",
+    "city" : "Hohenziatz",
+    "streetAddress" : "Im Dinkelfeld 4",
+    "postalCode" : "39291"
+  },
+  "type" : "EmployeeAddressChangeCommand"
+}
+]
