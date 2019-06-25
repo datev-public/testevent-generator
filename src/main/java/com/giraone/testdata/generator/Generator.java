@@ -107,10 +107,13 @@ public class Generator {
                 totalCounter++;
                 ret.add(event);
             } else {
-                final Person person = randomPerson();
+                final Person changedPerson = randomPerson();
                 final AbstractEmployeeEvent event = ret.get(RANDOM.nextInt(totalCounter));
-                person.setId(event.getPayload().getId());
-                EmployeeAddressChangeEvent payload = new EmployeeAddressChangeEvent(person);
+                final Person existingPerson = event.getPayload().clone();
+                existingPerson.setAdditionalField("postalCode", changedPerson.getAdditionalField("postalCode"));
+                existingPerson.setAdditionalField("city", changedPerson.getAdditionalField("city"));
+                existingPerson.setAdditionalField("streetAddress", changedPerson.getAdditionalField("streetAddress"));
+                EmployeeAddressChangeEvent payload = new EmployeeAddressChangeEvent(existingPerson);
                 ret.add(payload);
             }
         }

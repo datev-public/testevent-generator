@@ -28,6 +28,14 @@ public class Person {
         this.gender = gender;
     }
 
+    public Person clone() {
+        Person ret = new Person(this.givenName, this.surname, this.gender);
+        ret.id = this.id;
+        ret.additionalFields = new HashMap<>();
+        ret.additionalFields.putAll(this.additionalFields);
+        return ret;
+    }
+
     public String getGivenName() {
         return givenName;
     }
