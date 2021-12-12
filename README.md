@@ -11,8 +11,8 @@ mvn package
 ### Simple usages of the command line
 
 ```
-$ java -jar target/testdata-generator.jar
-usage: java -jar testdata-generator.jar
+$ java -jar target/testevent-generator.jar
+usage: java -jar testevent-generator.jar
  -h,--help                        print usage help
  -a,--additionalFields <arg>      comma separated list of additional fields
  -b,--startIndex                  if withIndex is used, this is the start index
@@ -34,3 +34,5 @@ usage: java -jar testdata-generator.jar
 ### Change Log
 
 - Version 1.0.0 (25.06.2019)
+- Version 1.1.0 (12.12.2021)
+  - Dependency updates (because of log4j vulnerability) 
